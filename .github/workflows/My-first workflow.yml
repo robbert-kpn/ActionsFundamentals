@@ -1,0 +1,10 @@
+name: First worklflow demo
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  job1:
+    name: First job
+    runs-on: ubuntu-latest
