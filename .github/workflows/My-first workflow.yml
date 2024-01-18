@@ -1,10 +1,27 @@
-name: First worklflow demo
+name: GitHub Actions demo
 
 on:
   workflow_dispatch:
   push:
+    branches: 
+    - main
+    paths-ignore:
+    - .github/**
+  schedule:
+  - cron: "15 6 * * 0"
+  
 
 jobs:
-  job1:
-    name: First job
+  Build:
     runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "event: ${{ github.event_name }}"
+          echo "branch name is: ${{ github.ref }}"
+
+      - uses: actions/checkout@v4.1.1
+
+      - name: Files in the repo
+        run: |
+          echo "Repo ${{ github.repository }}:"
+          tree
